@@ -4,10 +4,10 @@ declare namespace Auth {
    * 用户角色类型
    * - super: 超级管理员
    * - admin: 管理员
-   * - test: 测试
+   * - user: 测试
    * - visitor: 游客
    */
-  type RoleType = 'super' | 'admin' | 'test' | 'visitor';
+  type RoleType = 'super' | 'admin' | 'user' | 'visitor';
 
   /** 用户信息 */
   interface UserInfo {

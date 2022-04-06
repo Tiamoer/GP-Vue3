@@ -2,7 +2,7 @@ import { unref } from 'vue';
 import { defineStore } from 'pinia';
 import { router as globalRouter } from '@/router';
 import { useRouterPush } from '@/composables';
-import { fetchLogin, fetchUserInfo } from '@/service';
+import { fetchLogin, fetchUserInfo, fetchRegister } from '@/service';
 import { getUserInfo, getToken, setUserInfo, setToken, setRefreshToken, clearAuthStorage } from '@/utils';
 
 interface AuthState {
@@ -52,7 +52,7 @@ export const useAuthStore = defineStore('auth-store', {
       setRefreshToken(refreshToken);
 
       // 获取用户信息
-      const { data } = await fetchUserInfo();
+      const { data } = await fetchUserInfo(backendToken);
       if (data) {
         // 成功后把用户信息存储到缓存中
         setUserInfo(data);
@@ -85,6 +85,20 @@ export const useAuthStore = defineStore('auth-store', {
       const { data } = await fetchLogin(phone, pwdOrCode, type);
       if (data) {
         await this.loginByToken(data);
+      }
+      this.loginLoding = false;
+    },
+    /**
+     * 注册
+     * @param name - 用户名称
+     * @param phone - 手机号
+     * @param pwd - 密码
+     */
+    async register(name: string, phone: string, pwd: string) {
+      this.loginLoding = true;
+      const { data } = await fetchRegister(name, phone, pwd);
+      if (data) {
+        window.$message?.success(`用户${phone}注册成功`);
       }
       this.loginLoding = false;
     }

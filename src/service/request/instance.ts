@@ -13,7 +13,6 @@ import { refreshToken } from './helpers';
 
 /**
  * 封装axios请求类
- * @author Soybean<honghuangdc@gmail.com>
  */
 export default class CustomAxiosInstance {
   instance: AxiosInstance;
@@ -39,8 +38,9 @@ export default class CustomAxiosInstance {
     this.setInterceptor();
   }
 
-  /** 设置请求拦截器 */
+  /** 设置请求及响应拦截器 */
   setInterceptor() {
+    // 请求拦截器
     this.instance.interceptors.request.use(
       async config => {
         const handleConfig = { ...config };
@@ -58,6 +58,7 @@ export default class CustomAxiosInstance {
         return handleServiceResult(error, null);
       }
     );
+    // 响应拦截器
     this.instance.interceptors.response.use(
       async response => {
         const { status } = response;

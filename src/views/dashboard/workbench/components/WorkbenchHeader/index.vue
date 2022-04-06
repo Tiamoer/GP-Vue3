@@ -29,13 +29,13 @@ const auth = useAuthStore();
 const statisticData: StatisticData[] = [
   {
     id: 0,
-    label: '项目数',
+    label: '待查',
     value: '25'
   },
   {
     id: 1,
-    label: '待办',
-    value: '4/16'
+    label: '草稿',
+    value: '14'
   },
   {
     id: 2,

@@ -1,4 +1,4 @@
-import { mockRequest } from '../request';
+import { userRequest, mockRequest } from '../request';
 
 /**
  * 获取验证码
@@ -6,7 +6,7 @@ import { mockRequest } from '../request';
  * @returns - 返回boolean值表示是否发送成功
  */
 export function fetchSmsCode(phone: string) {
-  return mockRequest.post<boolean>('/getSmsCode', { phone });
+  return userRequest.post<boolean>('/getSmsCode', { phone });
 }
 
 /**
@@ -17,14 +17,14 @@ export function fetchSmsCode(phone: string) {
  */
 export function fetchLogin(phone: string, pwdOrCode: string, type: 'pwd' | 'sms') {
   if (type === 'pwd') {
-    return mockRequest.post<ApiAuth.Token>('/loginByPwd', { phone, pwd: pwdOrCode });
+    return userRequest.post<ApiAuth.Token>('/loginByPwd', { phone, pwd: pwdOrCode });
   }
-  return mockRequest.post<ApiAuth.Token>('/loginByCode', { phone, code: pwdOrCode });
+  return userRequest.post<ApiAuth.Token>('/loginByCode', { phone, code: pwdOrCode });
 }
 
 /** 获取用户信息 */
-export function fetchUserInfo() {
-  return mockRequest.get<ApiAuth.UserInfo>('/getUserInfo');
+export function fetchUserInfo(apiToken: ApiAuth.Token) {
+  return userRequest.get<ApiAuth.UserInfo>(`/getUserInfo?token=${apiToken.token}`);
 }
 
 /**
@@ -41,5 +41,15 @@ export function fetchUserRoutes(userId: string) {
  * @param refreshToken
  */
 export function fetchUpdateToken(refreshToken: string) {
-  return mockRequest.post<ApiAuth.Token>('/updateToken', { refreshToken });
+  return userRequest.post<ApiAuth.Token>('/updateToken', { refreshToken });
+}
+
+/**
+ * 注册
+ * @param name 用户名称
+ * @param phone 手机号码
+ * @param pwd 密码
+ */
+export function fetchRegister(name: string, phone: string, pwd: string) {
+  return userRequest.post<ApiAuth.Token>('/register', { name, phone, pwd });
 }

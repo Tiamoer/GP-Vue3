@@ -19,7 +19,7 @@ export async function createDynamicRouteGuard(
   if (!route.isAddedDynamicRoute) {
     // 未登录情况下直接回到登录页，登录成功后再加载动态路由
     if (!isLogin) {
-      if (to.name === routeName('login')) {
+      if (to.name === routeName('login') || to.name === routeName('check-code')) {
         next();
       } else {
         const redirect = to.fullPath;

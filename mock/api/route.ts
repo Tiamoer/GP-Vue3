@@ -91,7 +91,7 @@ const routes: AuthRoute.Route[] = [
       }
     ],
     meta: {
-      title: '文档',
+      title: '毕设文档',
       icon: 'carbon:document',
       order: 2
     }
@@ -133,8 +133,8 @@ const routes: AuthRoute.Route[] = [
       }
     ],
     meta: {
-      title: '组件示例',
-      icon: 'fluent:app-store-24-regular',
+      title: '系统管理',
+      icon: 'ic:outline-settings',
       order: 3
     }
   },
@@ -236,8 +236,8 @@ const routes: AuthRoute.Route[] = [
       }
     ],
     meta: {
-      title: '插件示例',
-      icon: 'clarity:plugin-line',
+      title: '日志管理',
+      icon: 'ant-design:exception-outlined',
       order: 4
     }
   },
@@ -278,62 +278,21 @@ const routes: AuthRoute.Route[] = [
       }
     ],
     meta: {
-      title: '异常页',
-      icon: 'ant-design:exception-outlined',
+      title: '脚本管理',
+      icon: 'clarity:plugin-line',
       order: 5
     }
   },
   {
-    name: 'multi-menu',
-    path: '/multi-menu',
+    name: 'user',
+    path: '/user',
     component: 'basic',
-    children: [
-      {
-        name: 'multi-menu_first',
-        path: '/multi-menu/first',
-        component: 'multi',
-        children: [
-          {
-            name: 'multi-menu_first_second',
-            path: '/multi-menu/first/second',
-            component: 'self',
-            meta: {
-              title: '二级菜单',
-              requiresAuth: true,
-              icon: 'ic:outline-menu'
-            }
-          },
-          {
-            name: 'multi-menu_first_second-new',
-            path: '/multi-menu/first/second-new',
-            component: 'multi',
-            children: [
-              {
-                name: 'multi-menu_first_second-new_third',
-                path: '/multi-menu/first/second-new/third',
-                component: 'self',
-                meta: {
-                  title: '三级菜单',
-                  requiresAuth: true,
-                  icon: 'ic:outline-menu'
-                }
-              }
-            ],
-            meta: {
-              title: '二级菜单(有子菜单)',
-              icon: 'ic:outline-menu'
-            }
-          }
-        ],
-        meta: {
-          title: '一级菜单',
-          icon: 'ic:outline-menu'
-        }
-      }
-    ],
     meta: {
-      title: '多级菜单',
-      icon: 'carbon:menu',
+      title: '用户设置',
+      requiresAuth: true,
+      singleLayout: 'basic',
+      permissions: ['super', 'admin'],
+      icon: 'carbon:user-profile',
       order: 6
     }
   },
@@ -342,10 +301,10 @@ const routes: AuthRoute.Route[] = [
     path: '/about',
     component: 'self',
     meta: {
-      title: '关于',
+      title: '关于毕设',
       requiresAuth: true,
       singleLayout: 'basic',
-      permissions: ['super', 'admin', 'test'],
+      permissions: ['super', 'admin'],
       icon: 'fluent:book-information-24-regular',
       order: 7
     }

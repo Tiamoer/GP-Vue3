@@ -1,5 +1,8 @@
 <template>
   <n-form ref="formRef" :model="model" :rules="rules" size="large" :show-label="false">
+    <n-form-item path="name">
+      <n-input v-model:value="model.name" placeholder="用户名称" />
+    </n-form-item>
     <n-form-item path="phone">
       <n-input v-model:value="model.phone" placeholder="手机号码" />
     </n-form-item>
@@ -24,17 +27,22 @@ import { LoginAgreement } from '@/components';
 import { useRouterPush } from '@/composables';
 import { useSmsCode } from '@/hooks';
 import { formRules, getConfirmPwdRule } from '@/utils';
+import { useAuthStore } from '@/store';
 
 const { toLoginModule } = useRouterPush();
 const { label, isCounting, loading: smsLoading, start } = useSmsCode();
 
+const { register } = useAuthStore();
+
 const formRef = ref<(HTMLElement & FormInst) | null>(null);
 const model = reactive({
+  name: '',
   phone: '',
   pwd: '',
   confirmPwd: ''
 });
 const rules: FormRules = {
+  name: formRules.name,
   phone: formRules.phone,
   pwd: formRules.pwd,
   confirmPwd: getConfirmPwdRule(toRefs(model).pwd)
@@ -52,8 +60,9 @@ function handleSubmit(e: MouseEvent) {
 
   formRef.value.validate(errors => {
     if (!errors) {
+      const { name, phone, pwd } = model;
       if (!agreement.value) return;
-      window.$message?.success('验证成功');
+      register(name, phone, pwd);
     } else {
       window.$message?.error('验证失败');
     }

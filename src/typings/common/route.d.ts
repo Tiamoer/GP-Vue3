@@ -12,6 +12,7 @@ declare namespace AuthRoute {
     | 'no-permission'
     | 'service-error'
     | 'not-found-page' // 捕获无效path的路由
+    | 'check-code'
     // 自定义路由
     | 'dashboard'
     | 'dashboard_analysis'
@@ -45,12 +46,13 @@ declare namespace AuthRoute {
     | 'multi-menu_first_second'
     | 'multi-menu_first_second-new'
     | 'multi-menu_first_second-new_third'
-    | 'about';
+    | 'about'
+    | 'user';
 
   /** 路由的path */
   type RoutePath =
     | '/'
-    | Exclude<KeyToPath<RouteKey>, '/root' | 'not-found-page'>
+    | Exclude<KeyToPath<RouteKey>, '/root' | 'not-found-page' | 'check-code'>
     | SingleRouteParentPath
     | '/:pathMatch(.*)*';
 

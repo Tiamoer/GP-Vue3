@@ -4,16 +4,16 @@
       <n-card :bordered="false" class="rounded-16px shadow-sm">
         <div class="flex w-full h-360px">
           <div class="w-200px h-full py-12px">
-            <h3 class="text-16px font-bold">Dashboard</h3>
-            <p class="text-[#aaa]">Overview Of Lasted Month</p>
+            <h3 class="text-16px font-bold">仪表板</h3>
+            <p class="text-[#aaa]">过去一个月日志采集数量</p>
             <h3 class="pt-36px text-24px font-bold">
-              <count-to prefix="$" :start-value="0" :end-value="7754" />
+              <count-to prefix="" :start-value="0" :end-value="7754" />
             </h3>
-            <p class="text-[#aaa]">Current Month Earnings</p>
+            <p class="text-[#aaa]">采集日志总数</p>
             <h3 class="pt-36px text-24px font-bold">
               <count-to :start-value="0" :end-value="1234" />
             </h3>
-            <p class="text-[#aaa]">Current Month Sales</p>
+            <p class="text-[#aaa]">当月日志采集数</p>
             <n-button class="mt-24px" type="primary">Last Month Summary</n-button>
           </div>
           <div class="flex-1-hidden h-full">

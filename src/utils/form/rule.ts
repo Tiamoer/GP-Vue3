@@ -1,9 +1,11 @@
 import type { Ref } from 'vue';
 import type { FormItemRule } from 'naive-ui';
-import { REGEXP_PHONE, REGEXP_PWD, REGEXP_CODE_SIX, REGEXP_EMAIL } from '@/config';
+import { REGEXP_PHONE, REGEXP_PWD, REGEXP_CODE_SIX, REGEXP_EMAIL, REGEXP_NAME } from '@/config';
 
 /** 表单规则 */
 interface CustomFormRules {
+  /** 用户名称 */
+  name: FormItemRule[];
   /** 手机号码 */
   phone: FormItemRule[];
   /** 密码 */
@@ -16,6 +18,10 @@ interface CustomFormRules {
 
 /** 表单规则 */
 export const formRules: CustomFormRules = {
+  name: [
+    { required: true, message: '请输入用户名称' },
+    { pattern: REGEXP_NAME, message: '用户名称格式错误', trigger: 'input' }
+  ],
   phone: [
     { required: true, message: '请输入手机号码' },
     { pattern: REGEXP_PHONE, message: '手机号码格式错误', trigger: 'input' }

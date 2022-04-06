@@ -54,6 +54,16 @@ export const constantRoutes: AuthRoute.Route[] = [
       singleLayout: 'blank'
     }
   },
+  {
+    name: 'check-code',
+    path: '/check-code',
+    component: 'self',
+    meta: {
+      title: '验证码',
+      singleLayout: 'blank',
+      requiresAuth: false
+    }
+  },
   // 匹配无效路径的路由
   {
     name: 'not-found-page',

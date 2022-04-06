@@ -1,4 +1,8 @@
 @import './transition.css';
+/*@import './scrollbar.css';*/
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar { width: 0 !important }
 
 html, body, #app {
 	height: 100%;

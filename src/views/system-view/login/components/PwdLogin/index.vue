@@ -22,9 +22,9 @@
         确定
       </n-button>
       <div class="flex-y-center justify-between">
-<!--        <n-button class="flex-1" :block="true" @click="toLoginModule('code-login')">-->
-<!--          {{ EnumLoginModule['code-login'] }}-->
-<!--        </n-button>-->
+        <n-button class="flex-1" :block="true" @click="toLoginModule('code-login')">
+          {{ EnumLoginModule['code-login'] }}
+        </n-button>
         <div class="w-12px"></div>
         <n-button class="flex-1" :block="true" @click="toLoginModule('register')">
           {{ EnumLoginModule.register }}

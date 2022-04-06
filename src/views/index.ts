@@ -2,6 +2,7 @@ import type { Component } from 'vue';
 
 type ViewComponent = Record<string, () => Promise<Component>>;
 
+/** Vite的动态导入语法 */
 const importViews = import.meta.glob('./**/index.vue');
 
 const COMPONENTS_KEY = 'components';
