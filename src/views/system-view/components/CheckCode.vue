@@ -5,23 +5,25 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-axios
-  .get('http://localhost:8080')
-  .then(res => {
-    console.log(res);
-  })
-  .catch(error => {
-    console.log(error);
-  });
-
-interface Props {
-  value: string;
-}
-
-defineProps<Props>();
+export default {
+  name: 'CheckCode',
+  setup() {
+    let code: string = ref('11111');
+    onMounted(() => {
+      axios.get('http://127.0.0.1:8001/user/getCode').then(res => {
+        console.log(res.data.data);
+        code.value = res.data.data as string;
+      });
+    });
+    return {
+      code
+    };
+  }
+};
 </script>
 
 <style scoped>
