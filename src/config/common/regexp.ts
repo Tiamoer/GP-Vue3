@@ -1,5 +1,5 @@
 /** 用户名称正则 */
-export const REGEXP_NAME = /^[a-z0-9_-]{3,16}$/;
+export const REGEXP_NAME = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,10}$/;
 
 /** 手机号码正则 */
 export const REGEXP_PHONE =
