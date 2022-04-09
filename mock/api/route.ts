@@ -287,11 +287,20 @@ const routes: AuthRoute.Route[] = [
     name: 'user',
     path: '/user',
     component: 'basic',
+    children: [
+      {
+        name: 'user_accountSecurity',
+        path: '/user/accountSecurity',
+        component: 'self',
+        meta: {
+          title: '修改信息',
+          requiresAuth: true,
+          icon: 'fa-regular:user-circle'
+        }
+      }
+    ],
     meta: {
       title: '用户设置',
-      requiresAuth: true,
-      singleLayout: 'basic',
-      permissions: ['super', 'admin'],
       icon: 'carbon:user-profile',
       order: 6
     }

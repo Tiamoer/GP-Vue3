@@ -2,7 +2,7 @@ import { unref } from 'vue';
 import { defineStore } from 'pinia';
 import { router as globalRouter } from '@/router';
 import { useRouterPush } from '@/composables';
-import { fetchLogin, fetchUserInfo, fetchRegister } from '@/service';
+import { fetchLogin, fetchUserInfo, fetchRegister, changeUserInfo } from '@/service';
 import { getUserInfo, getToken, setUserInfo, setToken, setRefreshToken, clearAuthStorage } from '@/utils';
 
 interface AuthState {
@@ -101,6 +101,20 @@ export const useAuthStore = defineStore('auth-store', {
         window.$message?.success(`用户${phone}注册成功`);
       }
       this.loginLoding = false;
+    },
+    /**
+     * 修改用户信息
+     * @param name 用户名称
+     * @param phone 用户手机号
+     * @param oldPwd 旧密码
+     * @param newPwd 新密码
+     */
+    async changeUserInfo(name: string, phone: string, oldPwd: string, newPwd: string) {
+      const { data } = await changeUserInfo(name, phone, oldPwd, newPwd);
+      if (data) {
+        window.$message?.success(`用户${phone}信息修改成功`);
+        this.resetAuthStore();
+      }
     }
   }
 });

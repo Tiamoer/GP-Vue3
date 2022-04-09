@@ -53,3 +53,14 @@ export function fetchUpdateToken(refreshToken: string) {
 export function fetchRegister(name: string, phone: string, pwd: string) {
   return userRequest.post<ApiAuth.Token>('/register', { name, phone, pwd });
 }
+
+/**
+ * 修改用户信息
+ * @param name 用户名称
+ * @param phone 手机号码
+ * @param oldPwd 旧的密码
+ * @param newPwd 新的密码
+ */
+export function changeUserInfo(name: string, phone: string, oldPwd: string, newPwd: string) {
+  return userRequest.post<ApiAuth.UserInfo>('/changeUserInfo', { name, phone, oldPwd, newPwd });
+}

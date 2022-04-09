@@ -9,7 +9,9 @@
 
 <script lang="ts" setup>
 import { HoverContainer } from '@/components';
+import { router } from '@/router';
 import { useAuthStore } from '@/store';
+import { useRouterPush } from '@/composables';
 import { iconifyRender } from '@/utils';
 
 type DropdownKey = 'user-center' | 'logout';
@@ -18,7 +20,7 @@ const auth = useAuthStore();
 
 const options = [
   {
-    label: '用户中心',
+    label: '修改密码',
     key: 'user-center',
     icon: iconifyRender('carbon:user-avatar')
   },
@@ -45,6 +47,11 @@ function handleDropdown(optionKey: string) {
         auth.resetAuthStore();
       }
     });
+  }
+  if (key === 'user-center') {
+    window.$message?.create('哇呜！！');
+    const { routerPush } = useRouterPush(false);
+    routerPush('/user/accountSecurity');
   }
 }
 </script>
