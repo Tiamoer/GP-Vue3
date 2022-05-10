@@ -12,10 +12,9 @@ import axios from 'axios';
 export default {
   name: 'CheckCode',
   setup() {
-    let code: string = ref('11111');
+    let code: string = ref('');
     onMounted(() => {
       axios.get('http://127.0.0.1:8001/user/getCode').then(res => {
-        console.log(res.data.data);
         code.value = res.data.data as string;
       });
     });

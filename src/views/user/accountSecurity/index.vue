@@ -1,26 +1,30 @@
 <template>
-  <div id="changPwdBox">
-    <n-form ref="formRef" :model="model" :rules="rules" label-placement="left" label-width="auto" require-mark-placement="left">
-      <n-form-item label="用户名称：" path="username">
-        <n-input v-model:value="model.username" placeholder="用户名称" />
-      </n-form-item>
-      <n-form-item label="手机号码：" path="phone">
-        <n-input v-model:value="model.phone" readonly="true" placeholder="手机号码" />
-      </n-form-item>
-      <n-form-item label="旧的密码：" path="oldPwd">
-        <n-input v-model:value="model.oldPwd" placeholder="旧的密码" />
-      </n-form-item>
-      <n-form-item label="新的密码：" path="newPwd">
-        <n-input v-model:value="model.newPwd" placeholder="新的密码" />
-      </n-form-item>
-      <n-form-item label="确认新密码" path="confirmPwd">
-        <n-input v-model:value="model.confirmPwd" placeholder="确认新密码" />
-      </n-form-item>
-      <login-agreement v-model:value="agreement" />
-      <div style="display: flex; justify-content: center; margin-top: 20px">
-        <n-button round type="primary" @click="submit">提交</n-button>
+  <div class="h-full">
+    <n-card title="用户信息修改" class="h-full shadow-sm rounded-16px" content-style="overflow:hidden">
+      <div id="changPwdBox">
+        <n-form ref="formRef" :model="model" :rules="rules" label-placement="left" label-width="auto" require-mark-placement="left">
+          <n-form-item label="用户名称：" path="username">
+            <n-input v-model:value="model.username" placeholder="用户名称" />
+          </n-form-item>
+          <n-form-item label="手机号码：" path="phone">
+            <n-input v-model:value="model.phone" readonly="true" placeholder="手机号码" />
+          </n-form-item>
+          <n-form-item label="旧的密码：" path="oldPwd">
+            <n-input v-model:value="model.oldPwd" placeholder="旧的密码" />
+          </n-form-item>
+          <n-form-item label="新的密码：" path="newPwd">
+            <n-input v-model:value="model.newPwd" placeholder="新的密码" />
+          </n-form-item>
+          <n-form-item label="确认新密码" path="confirmPwd">
+            <n-input v-model:value="model.confirmPwd" placeholder="确认新密码" />
+          </n-form-item>
+          <login-agreement v-model:value="agreement" />
+          <div style="display: flex; justify-content: center; margin-top: 20px">
+            <n-button round type="primary" @click="submit">提交</n-button>
+          </div>
+        </n-form>
       </div>
-    </n-form>
+    </n-card>
   </div>
 </template>
 
@@ -31,9 +35,7 @@ import { useAuthStore } from '@/store';
 import { formRules, getConfirmPwdRule, getUserInfo } from '@/utils';
 
 const { changeUserInfo } = useAuthStore();
-
 const formRef = ref<(HTMLElement & FormInst) | null>(null);
-
 const { userName, userPhone } = getUserInfo();
 
 const model = reactive({

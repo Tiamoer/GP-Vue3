@@ -1,5 +1,6 @@
 {
 	"extends": "@vue/tsconfig/tsconfig.web.json",
+  "module": "esnext",
 	"include": [
 		"src/typings/**/*.d.ts",
 		"src/**/*",
