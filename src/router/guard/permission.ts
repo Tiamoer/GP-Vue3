@@ -1,7 +1,8 @@
 import type { Router, RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
 import { routeName } from '@/router';
 import { useAuthStore } from '@/store';
-import { exeStrategyActions, getToken } from '@/utils';
+import { isLoginToken } from '@/service';
+import { exeStrategyActions } from '@/utils';
 import { createDynamicRouteGuard } from './dynamic';
 
 /** 处理路由页面的权限 */
@@ -23,7 +24,19 @@ export async function createPermissionGuard(
   }
 
   const auth = useAuthStore();
-  const isLogin = Boolean(getToken());
+  let isLogin = Boolean(false);
+
+  // 如果是退出登录，无需其他操作
+  if (to.name === routeName('login')) {
+    next();
+    return;
+  }
+
+  await isLoginToken().then(res => {
+    isLogin = res.data === 1;
+  });
+
+  // const isLogin = false;
   const permissions = to.meta.permissions || [];
   const needLogin = Boolean(to.meta?.requiresAuth) || Boolean(permissions.length);
   const hasPermission = !permissions.length || permissions.includes(auth.userInfo.userRole);

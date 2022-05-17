@@ -64,3 +64,10 @@ export function fetchRegister(name: string, phone: string, pwd: string) {
 export function changeUserInfo(name: string, phone: string, oldPwd: string, newPwd: string) {
   return userRequest.post<ApiAuth.UserInfo>('/changeUserInfo', { name, phone, oldPwd, newPwd });
 }
+
+/**
+ * 判断用户是否登录
+ */
+export function isLoginToken() {
+  return userRequest.get('/isLogin');
+}

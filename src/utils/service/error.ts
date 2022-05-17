@@ -8,14 +8,14 @@ import {
   REQUEST_TIMEOUT_MSG,
   ERROR_STATUS
 } from '@/config';
-import { exeStrategyActions } from '../common';
+import { exeStrategyActions } from '@/utils';
 import { showErrorMsg } from './msg';
 
 type ErrorStatus = keyof typeof ERROR_STATUS;
 
 /**
  * 处理axios请求失败的错误
- * @param error - 错误
+ * @param axiosError
  */
 export function handleAxiosError(axiosError: AxiosError) {
   const error: Service.RequestError = {

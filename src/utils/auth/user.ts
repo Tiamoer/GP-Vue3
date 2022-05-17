@@ -1,5 +1,5 @@
-import { EnumStorageKey } from '@/enum';
-import { setLocal, getLocal, removeLocal } from '../storage';
+import { EnumStorageKey } from "@/enum";
+import { getLocal, removeLocal, setLocal } from "@/utils";
 
 /** 设置token */
 export function setToken(token: string) {
@@ -39,8 +39,7 @@ export function getUserInfo() {
     userPhone: '',
     userRole: 'visitor'
   };
-  const userInfo: Auth.UserInfo = getLocal<Auth.UserInfo>(EnumStorageKey['user-info']) || emptyInfo;
-  return userInfo;
+  return getLocal<Auth.UserInfo>(EnumStorageKey['user-info']) || emptyInfo;
 }
 
 /** 设置用户信息 */

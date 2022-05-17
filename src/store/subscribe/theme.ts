@@ -1,8 +1,8 @@
 import { watch, onUnmounted } from 'vue';
 import { useOsTheme } from 'naive-ui';
 import { useElementSize } from '@vueuse/core';
+import { useThemeStore } from '@/store';
 import { setThemeColor } from '@/utils';
-import { useThemeStore } from '../modules';
 
 /** 订阅theme store */
 export default function subscribeThemeStore() {

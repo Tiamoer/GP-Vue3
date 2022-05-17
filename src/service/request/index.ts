@@ -13,7 +13,7 @@ export const mockRequest = createRequest({ baseURL: '/mock' });
 export const userRequest = createRequest({ baseURL: 'http://localhost:8001/user' });
 
 // SysApi 请求对象
-export const sysRequest = createRequest({ baseURL: 'http://localhost:8001/sys' });
+export const sysRequest = createRequest({ baseURL: 'http://localhost:8001/system' });
 
 // LogApi 请求对象
 export const logRequest = createRequest({ baseURL: 'http://localhost:8001/log' });
